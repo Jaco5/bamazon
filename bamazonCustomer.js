@@ -42,8 +42,8 @@ function promptUser() {
                             }
                         ], function (err, res) {
                             if (err) throw err;
-                            var totalCost = response.units * unitPrice;
-                            console.log("Your total cost is $" + totalCost + ".");
+                            var total = response.units * unitPrice;
+                            console.log("TOTAL:$" + total );
                             showStock();
                         })
                 } else {
@@ -61,9 +61,9 @@ function showStock() {
     connection.query("SELECT * FROM forsale", function (err, res) {
         if (err) throw err;
         res.forEach(function (item) {
-            console.log(item.item_name + " Item ID: " + item.item_id + ", $" + item.price + "\n" + item.stock + " in stock" + "\nDepartment: " + item.department_name + line);
+            console.log(item.item_name + "\nItem ID: " + item.item_id + ", $" + item.price + "\n" + item.stock + " in stock" + "\ncategory: " + item.category + line);
         });
-        console.log("\n");
+
         promptUser();
     });
 };
